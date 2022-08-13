@@ -10,7 +10,6 @@ public class LaserTurret : TurretBase
     public int enemyCount;
     public Transform attackPos;
     public LineRenderer[] Lasers;
-    public ParticleSystem[] LasersEffect;
 
     private void Update()
     {
@@ -25,18 +24,12 @@ public class LaserTurret : TurretBase
                 Lasers[i].transform.LookAt(near[i].transform);
 
                 near[i].OnHit(damage * Time.deltaTime, transform);
-
-                var main = LasersEffect[i].main;
-                main.startLifetime = Vector3.Distance(Lasers[i].transform.position, near[i].transform.position) / 5f;
-
-                LasersEffect[i].Play();
             }
             else
             {
                 Lasers[i].SetPosition(0, attackPos.position);
                 Lasers[i].SetPosition(1, attackPos.position);
 
-                LasersEffect[i].Stop();
             }
         }
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class TurretBase : MonoBehaviour
 {
-
     [Header("Tower System")]
     [SerializeField] float checkRadius;
     public float damage;
