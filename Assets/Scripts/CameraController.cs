@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
 
         float wheel = Input.GetAxis("Mouse ScrollWheel");
 
-        transform.Translate(Vector3.up * wheel * cameraSpeed);
+        transform.Translate(Vector3.down * wheel * cameraSpeed);
 
         float x = Mathf.Clamp(transform.position.x, -40f, 55f);
         float y = Mathf.Clamp(transform.position.y, 25f, 55f);
