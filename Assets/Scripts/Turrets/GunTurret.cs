@@ -33,6 +33,7 @@ public class GunTurret : TurretBase
                 isLeft = !isLeft;
 
                 enemy.OnHit(damage, transform);
+                Exp += damage;
             }
 
             curDelay = 0f;

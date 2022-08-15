@@ -7,6 +7,7 @@ public class MortarBall : MonoBehaviour
 
     Transform target;
     Vector3 start;
+    Vector3 end;
 
     float anim;
     float delay;
@@ -16,6 +17,7 @@ public class MortarBall : MonoBehaviour
         start = startPos.position;
         target = endPos;
         delay = time;
+        end = target.position;
     }
 
     void Update()
@@ -33,7 +35,7 @@ public class MortarBall : MonoBehaviour
         anim += Time.deltaTime;
         anim = anim % 5;
 
-        transform.position = MathParabola.Parabola(start, target.position, 5f, anim);
+        transform.position = MathParabola.Parabola(start, end, 5f, anim);
     }
 
 }

@@ -9,8 +9,32 @@ public abstract class TurretBase : MonoBehaviour
     public float damage;
     public Transform body; // rotate able
     Hostile target = null;
+    public int level;
+    float exp;
+    public float Exp
+    {
+        get
+        {
+            return exp;
+        }
+        set
+        {
+            exp = value;
+            if(exp >= maxExp && level < 5)
+            {
+                exp -= maxExp;
+                level++;
+            }
+        }
+    }
+    public float maxExp => level * 50f;
 
     [HideInInspector] public List<Hostile> nearbyHostile = new List<Hostile>();
+    EXPBar thisBar;
+    private void Awake()
+    {
+        thisBar = InGameManager.Instance.SpawnExp(this);
+    }
 
     private void OnDrawGizmos()
     {

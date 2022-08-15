@@ -24,6 +24,7 @@ public class LaserTurret : TurretBase
                 Lasers[i].transform.LookAt(near[i].transform);
 
                 near[i].OnHit(damage * Time.deltaTime, transform);
+                Exp += damage * Time.deltaTime;
             }
             else
             {
