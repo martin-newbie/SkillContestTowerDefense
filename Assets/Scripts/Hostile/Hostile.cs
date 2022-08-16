@@ -37,6 +37,7 @@ public abstract class Hostile : MonoBehaviour
         }
         else
         {
+            InGameManager.Instance.HP--;
             Destroy(gameObject);
         }
     }
@@ -47,6 +48,7 @@ public abstract class Hostile : MonoBehaviour
 
         if (Hp <= 0)
         {
+            InGameManager.Instance.coin++;
             Destroy(gameObject);
             // destroy action
         }

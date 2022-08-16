@@ -9,12 +9,12 @@ public abstract class TurretBase : MonoBehaviour
     public GameObject[] LevelBase;
 
     [Header("Tower System")]
-    [SerializeField] float checkRadius;
+    public float checkRadius;
     public float damage;
     public Transform body; // rotate able
     Hostile target = null;
     public int level;
-    public bool UpgradeAble;
+    public bool UpgradeAble => exp >= maxExp && level < 2;
 
     public int[] cost = new int[3];
 
@@ -28,10 +28,6 @@ public abstract class TurretBase : MonoBehaviour
         set
         {
             exp = value;
-            if (exp >= maxExp && level < 2)
-            {
-                UpgradeAble = true;
-            }
         }
     }
     public float maxExp => 50f + level * 50f;

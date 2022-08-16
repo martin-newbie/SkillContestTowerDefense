@@ -12,6 +12,24 @@ public class InGameManager : Singleton<InGameManager>
 
     public int coin;
 
+    int hp;
+    public int HP
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            hp = value;
+            if(hp <= 0)
+            {
+                // gameover
+                Debug.Log("Game Over");
+            }
+        }
+    }
+
     private void Start()
     {
         StartCoroutine(SpawnDummy());
@@ -21,6 +39,7 @@ public class InGameManager : Singleton<InGameManager>
     {
         EXPBar temp = Instantiate(expPrefab, canvasRT);
         temp.Init(turret, canvasRT);
+        temp.transform.SetAsFirstSibling();
         return temp;
     }
 
