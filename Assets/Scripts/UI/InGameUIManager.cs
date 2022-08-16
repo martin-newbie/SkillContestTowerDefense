@@ -24,7 +24,14 @@ public class InGameUIManager : MonoBehaviour
             }
             else
             {
-
+                if (tower.thisTurret.UpgradeAble)
+                {
+                    // open upgrade
+                }
+                else
+                {
+                    // open status
+                }
             }
         }
     }

@@ -4,12 +4,20 @@ using UnityEngine;
 
 public abstract class TurretBase : MonoBehaviour
 {
+    [Header("Level Objects")]
+    public GameObject[] LevelArmor;
+    public GameObject[] LevelBase;
+
     [Header("Tower System")]
     [SerializeField] float checkRadius;
     public float damage;
     public Transform body; // rotate able
     Hostile target = null;
     public int level;
+    public bool UpgradeAble;
+
+    public int[] cost = new int[3];
+
     float exp;
     public float Exp
     {
@@ -20,20 +28,41 @@ public abstract class TurretBase : MonoBehaviour
         set
         {
             exp = value;
-            if(exp >= maxExp && level < 5)
+            if (exp >= maxExp && level < 2)
             {
-                exp -= maxExp;
-                level++;
+                UpgradeAble = true;
             }
         }
     }
-    public float maxExp => level * 50f;
+    public float maxExp => 50f + level * 50f;
 
     [HideInInspector] public List<Hostile> nearbyHostile = new List<Hostile>();
     EXPBar thisBar;
     private void Awake()
     {
         thisBar = InGameManager.Instance.SpawnExp(this);
+        InitObject();
+    }
+
+    public void Upgrade()
+    {
+        if (UpgradeAble)
+        {
+            InGameManager.Instance.coin -= cost[level];
+            exp = 0f;
+            level++;
+
+            InitObject();
+        }
+    }
+
+    void InitObject()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            LevelArmor[i].SetActive(i == level);
+            LevelBase[i].SetActive(i == level);
+        }
     }
 
     private void OnDrawGizmos()

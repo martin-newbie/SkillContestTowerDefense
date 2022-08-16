@@ -10,6 +10,8 @@ public class InGameManager : Singleton<InGameManager>
     public RectTransform canvasRT;
     public EXPBar expPrefab;
 
+    public int coin;
+
     private void Start()
     {
         StartCoroutine(SpawnDummy());

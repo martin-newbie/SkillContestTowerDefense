@@ -22,6 +22,6 @@ public class EXPBar : MonoBehaviour
         Vector3 pos = Camera.main.WorldToScreenPoint(turret.transform.position + offset);
         transform.position = pos;
         gauge.fillAmount = turret.Exp / turret.maxExp;
-        level.text = turret.level.ToString();
+        level.text = (turret.level + 1).ToString();
     }
 }

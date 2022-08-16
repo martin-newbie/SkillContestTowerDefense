@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunTurret : TurretBase
 {
+
     [Header("GunTurret")]
     public float attackDelay;
     float curDelay;
